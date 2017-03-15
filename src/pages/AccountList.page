@@ -1,0 +1,52 @@
+<apex:page recordsetvar="accounts" showheader="true" sidebar="true" standardcontroller="Account">
+    <apex:form>
+        <apex:pageblock title="ListAcccounts">
+            <apex:repeat value="{! accounts}" var="a">
+                <li><apex:outputlink value="{! URLFOR($Action.Account.View, a.Id) }">
+                    {! a.name}
+
+                </apex:outputlink>           </li>
+                
+
+
+            </apex:repeat>
+            <!-- Pagination -->
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            Page:
+                            <apex:outputtext value=" {!PageNumber} of {! CEILING(ResultSize / PageSize) }">
+                            </apex:outputtext>
+                        </td>
+                        <td align="center">
+                            <!-- Previous page -->
+                            <!-- active -->
+                            <apex:commandlink action="{! Previous }" rendered="{! HasPrevious }" value="« Previous">
+                            </apex:commandlink>
+                            <!-- inactive (no earlier pages) -->
+                            <apex:outputtext rendered="{! NOT(HasPrevious) }" style="color: #ccc;" value="« Previous">
+                            </apex:outputtext>
+                            <!-- Next page -->
+                            <!-- active -->
+                            <apex:commandlink action="{! Next }" rendered="{! HasNext }" value="Next »">
+                            </apex:commandlink>
+                            <!-- inactive (no more pages) -->
+                            <apex:outputtext rendered="{! NOT(HasNext) }" style="color: #ccc;" value="Next »">
+                            </apex:outputtext>
+                        </td>
+                        <td align="right">
+                            Records per page:
+                            <apex:selectlist size="1" value="{! PageSize }">
+                                <apex:selectoption itemlabel="5" itemvalue="5">
+                                </apex:selectoption>
+                                <apex:selectoption itemlabel="20" itemvalue="20">
+                                </apex:selectoption>
+                                <apex:actionsupport event="onchange" rerender="accounts">
+                                </apex:actionsupport>
+                            </apex:selectlist>
+                        </td>
+                    </tr>
+                </table>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

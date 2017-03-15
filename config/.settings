@@ -1,0 +1,17 @@
+{
+    "projectName": "salesforce.com",
+    "username": "vinothbabu12@gmail.com",
+    "id": "eae23e60-0406-11e7-ab59-c1e0214c2cd3",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://eu11.salesforce.com",
+    "workspace": "C:\\Users\\vbabu\\Documents",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "StaticResource"
+    ]
+}

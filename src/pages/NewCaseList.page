@@ -1,0 +1,12 @@
+<apex:page showHeader="true" sidebar="true" controller="NewCaseListController">
+	<apex:form>
+	<apex:repeat value="{!NewCases}" var="case">
+	<li>
+	 <apex:outputLink
+                value="{! URLFOR($Action.Case.Edit, case.Id) }">
+                {!case.Id}
+            </apex:outputLink>
+            </li>
+	</apex:repeat>
+	</apex:form>
+</apex:page>

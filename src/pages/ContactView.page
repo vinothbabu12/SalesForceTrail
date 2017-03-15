@@ -1,0 +1,14 @@
+<apex:page showheader="true" sidebar="false" standardcontroller="Contact">
+    <apex:pageblock title="Contact Details">
+        <apex:pageblocksection>
+            {! Contact.FirstName}
+            <br>
+                {! Contact.LastName}
+                <br>
+                    {! Contact.Owner.email}
+                    <br/>
+                </br>
+            </br>
+        </apex:pageblocksection>
+    </apex:pageblock>
+</apex:page>

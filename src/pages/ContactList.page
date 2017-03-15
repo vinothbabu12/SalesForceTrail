@@ -1,0 +1,62 @@
+<apex:page recordsetvar="contacts" standardcontroller="Contact">
+    <apex:form>
+        <apex:pageblock id="contacts_list" title="Contacts List">
+            Filter:
+            <apex:selectlist size="1" value="{! filterId }">
+                <apex:selectoptions value="{! listViewOptions }">
+                </apex:selectoptions>
+                <apex:actionsupport event="onchange" rerender="contacts_list">
+                </apex:actionsupport>
+            </apex:selectlist>
+            <apex:pageblocktable value="{! contacts }" var="ct">
+               
+                            <!-- Contacts List -->
+                <apex:column value="{! ct.FirstName }">
+                </apex:column>
+                <apex:column value="{! ct.LastName }">
+                </apex:column>
+                <apex:column value="{! ct.Email }">
+                </apex:column>
+                <apex:column value="{! ct.Account.Name }">
+                </apex:column>
+            </apex:pageblocktable>
+             <!-- Pagination -->
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            Page:
+                            <apex:outputtext value=" {!PageNumber} of {! CEILING(ResultSize / PageSize) }">
+                            </apex:outputtext>
+                        </td>
+                        <td align="center">
+                            <!-- Previous page -->
+                            <!-- active -->
+                            <apex:commandlink action="{! Previous }" rendered="{! HasPrevious }" value="« Previous">
+                            </apex:commandlink>
+                            <!-- inactive (no earlier pages) -->
+                            <apex:outputtext rendered="{! NOT(HasPrevious) }" style="color: #ccc;" value="« Previous">
+                            </apex:outputtext>
+                            <!-- Next page -->
+                            <!-- active -->
+                            <apex:commandlink action="{! Next }" rendered="{! HasNext }" value="Next »">
+                            </apex:commandlink>
+                            <!-- inactive (no more pages) -->
+                            <apex:outputtext rendered="{! NOT(HasNext) }" style="color: #ccc;" value="Next »">
+                            </apex:outputtext>
+                        </td>
+                        <td align="right">
+                            Records per page:
+                            <apex:selectlist size="1" value="{! PageSize }">
+                                <apex:selectoption itemlabel="5" itemvalue="5">
+                                </apex:selectoption>
+                                <apex:selectoption itemlabel="20" itemvalue="20">
+                                </apex:selectoption>
+                                <apex:actionsupport event="onchange" rerender="contacts_list">
+                                </apex:actionsupport>
+                            </apex:selectlist>
+                        </td>
+                    </tr>
+                </table>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>
